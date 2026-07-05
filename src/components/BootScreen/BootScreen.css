@@ -1,0 +1,100 @@
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.7s ease;
+}
+
+.boot-screen.boot-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-init-btn {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold-dim);
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.boot-init-btn:hover {
+  background: rgba(176, 154, 112, 0.1);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 20px rgba(176, 154, 112, 0.15);
+  text-shadow: 0 0 10px rgba(176, 154, 112, 0.3);
+}
+
+.boot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: bootFadeIn 0.5s ease;
+}
+
+.boot-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--accent-gold);
+  text-shadow: 0 0 20px rgba(176, 154, 112, 0.3);
+}
+
+.boot-lines {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.boot-line {
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.boot-line.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.boot-prefix {
+  color: var(--text-muted);
+}
+
+.boot-ok {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.boot-progress-container {
+  margin-top: 0.5rem;
+}
+
+.boot-progress {
+  width: 300px;
+  height: 3px;
+  background: rgba(176, 154, 112, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-gold-dim), var(--accent-gold), var(--accent-gold-bright));
+  border-radius: 2px;
+  transition: width 0.04s linear;
+}

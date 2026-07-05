@@ -1,0 +1,143 @@
+/* ══════════════════════════════════════
+   HEADER — Fixed top status bar
+   ══════════════════════════════════════ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background: #000000;
+  border-bottom: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+/* ── Groups ── */
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-left {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.header-center {
+  flex: 0 0 auto;
+}
+
+.header-right {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* ── URL Display ── */
+.header-url {
+  font-size: 0.72rem;
+  color: var(--accent-gold-bright);
+  letter-spacing: 0.05em;
+  opacity: 1;
+  padding: 3px 12px;
+  border: 1px solid rgba(139, 115, 85, 0.35);
+  border-radius: 4px;
+  text-shadow: 0 0 6px rgba(212, 184, 122, 0.25);
+}
+
+/* ── Location ── */
+.header-location {
+  font-size: 0.72rem;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ── Status Badge ── */
+.header-status {
+  font-size: 0.72rem;
+  color: var(--green);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-status-dot {
+  color: var(--green);
+  font-size: 0.6rem;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── DateTime ── */
+.header-datetime {
+  font-size: 0.72rem;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Buttons ── */
+.header-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.header-btn:hover {
+  color: var(--accent-gold-bright);
+  background: rgba(176, 154, 112, 0.08);
+  box-shadow: 0 0 8px rgba(176, 154, 112, 0.12);
+}
+
+.header-btn:active {
+  transform: scale(0.92);
+}
+
+.header-btn--power {
+  font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header-center {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-datetime,
+  .header-location {
+    display: none;
+  }
+
+  .header {
+    padding: 0 8px;
+  }
+}

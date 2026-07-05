@@ -1,0 +1,73 @@
+.power-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.power-off-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.power-messages {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  line-height: 2;
+  text-align: left;
+}
+
+.power-msg {
+  animation: fadeInLine 0.3s ease;
+}
+
+.power-halted {
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.blink-cursor {
+  animation: cursorBlink 0.7s step-end infinite;
+}
+
+.power-button-big {
+  font-size: 3.5rem;
+  color: var(--accent-gold-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem;
+  line-height: 1;
+}
+
+.power-button-big:hover {
+  color: var(--accent-gold);
+  text-shadow: 0 0 30px rgba(176, 154, 112, 0.5);
+  transform: scale(1.1);
+}
+
+.power-progress-container {
+  margin-top: 1rem;
+}
+
+.power-progress {
+  width: 300px;
+  height: 3px;
+  background: rgba(176, 154, 112, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.power-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-gold-dim), var(--accent-gold), var(--accent-gold-bright));
+  border-radius: 2px;
+  transition: width 0.04s linear;
+}

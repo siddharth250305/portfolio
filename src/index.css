@@ -1,0 +1,340 @@
+/* ══════════════════════════════════════
+   GLOBAL STYLES — CSS Variables, Reset, Animations, Fonts
+   ══════════════════════════════════════ */
+
+/* Fonts (Orbitron + JetBrains Mono) are loaded via <link> in index.html */
+
+:root {
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-terminal: #000000;
+  --bg-header: #000000;
+  --text-primary: #d4c9a8;
+  --text-secondary: #8a8060;
+  --text-muted: #5a5540;
+  /* Primary brand accent — muted champagne gold */
+  --accent-gold: #8B7355;
+  --accent-gold-light: #c4b088;
+  --accent-gold-dim: #6b5d4d;
+  --accent-gold-bright: #d4b87a;
+  --accent-amber: #9a8060;
+  --accent-bronze: #7a6548;
+  --accent-red: #8b4444;
+  --accent-green: #6b8b55;
+  --border-color: rgba(139, 115, 85, 0.2);
+  --border-glow: rgba(139, 115, 85, 0.06);
+  --glow-gold: rgba(180, 150, 100, 0.15);
+  /* Glassmorphism terminal */
+  --glass-bg: rgba(0, 0, 0, 0.85);
+  --glass-border: rgba(139, 115, 85, 0.2);
+  --glow-text: 0 0 3px rgba(212, 201, 168, 0.15);
+  --scrollbar-thumb: #2a2520;
+  --scrollbar-track: #000000;
+  --selection-bg: rgba(176, 154, 112, 0.2);
+  --scanline-opacity: 0.015;
+  --shadow-heavy: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
+  --bezel-color: #1a1814;
+  --bezel-highlight: #252118;
+  --bezel-shadow: #0d0c0a;
+
+  /* ── PRD Theme Tokens ── */
+  --bg: #000000;
+  --panel: #000000;
+  --panel-head: #000000;
+  --line: #2a2417;
+  --gold: #e8c14a;
+  --gold-l: #f7e3a1;
+  --gold-d: #b8860b;
+  --green: #b8bb26;
+  --text: #ece3cf;
+  --muted: #a99d80;
+  --faint: #6f6552;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f2f0eb;
+  --bg-secondary: #e8e5dd;
+  --bg-terminal: #f5f3ee;
+  --bg-header: #eae7e0;
+  --text-primary: #2a2520;
+  --text-secondary: #5a5040;
+  --text-muted: #8a8070;
+  --accent-gold: #8a7a58;
+  --accent-gold-light: #6a5d48;
+  --accent-gold-dim: #a89878;
+  --accent-gold-bright: #7a6a48;
+  --glass-bg: rgba(245, 243, 238, 0.75);
+  --glass-border: rgba(80, 70, 50, 0.2);
+  --accent-amber: #6a5a40;
+  --accent-bronze: #5a4a38;
+  --accent-red: #994444;
+  --accent-green: #4a7a3a;
+  --border-color: rgba(80, 70, 50, 0.2);
+  --border-glow: rgba(80, 70, 50, 0.06);
+  --glow-gold: rgba(100, 90, 60, 0.1);
+  --glow-text: 0 0 3px rgba(42, 37, 32, 0.1);
+  --scrollbar-thumb: #c8c4b8;
+  --scrollbar-track: #e8e5dd;
+  --selection-bg: rgba(138, 122, 88, 0.2);
+  --scanline-opacity: 0.008;
+  --shadow-heavy: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --bezel-color: #d8d4c8;
+  --bezel-highlight: #e5e2d8;
+  --bezel-shadow: #b8b4a8;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--text-primary);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold-dim);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ── Links ── */
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+a:hover {
+  color: var(--accent-gold-bright);
+  text-shadow: var(--glow-text);
+}
+
+/* ── Buttons ── */
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ── No JS fallback ── */
+.no-js-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--accent-red);
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  z-index: 99999;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* ── Screen Reader Only ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Faint text utility ── */
+.faint-text {
+  color: var(--faint);
+}
+
+/* ── Status green dot ── */
+.status-green {
+  color: var(--green);
+}
+
+/* ══════════════════════════════════════
+   GLOBAL ANIMATIONS
+   ══════════════════════════════════════ */
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLine {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes bootFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glossySweep {
+  0%, 100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes terminalShake {
+  0% {
+    transform: translateX(0);
+  }
+
+  15% {
+    transform: translateX(-4px);
+  }
+
+  30% {
+    transform: translateX(3px);
+  }
+
+  45% {
+    transform: translateX(-2px);
+  }
+
+  60% {
+    transform: translateX(1px);
+  }
+
+  75% {
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .scanlines,
+  .crt-vignette,
+  .crt-noise,
+  .crt-flicker,
+  #particle-canvas,
+  #matrix-canvas,
+  .header,
+  .footer,
+  .terminal-section,
+  .power-overlay,
+  .boot-screen {
+    display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+}
