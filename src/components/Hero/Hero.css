@@ -159,117 +159,7 @@
   font-weight: 600;
 }
 
-/* ══════════════════════════════════════
-   COMMAND CHIPS (PRD FR-2)
-   ══════════════════════════════════════ */
 
-.hero-chips-section {
-  margin-top: 1.5rem;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.hero-chips-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Nudge line */
-.hero-nudge {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--faint);
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
-}
-
-/* Chips container */
-.hero-chips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* Individual chip */
-.hero-chip {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 8px 18px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(10, 10, 8, 0.6);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.04em;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-chip::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg,
-      transparent 40%,
-      rgba(232, 193, 74, 0.06) 50%,
-      transparent 60%);
-  background-size: 300% 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.hero-chip:hover {
-  border-color: var(--gold);
-  color: var(--gold-l);
-  box-shadow: 0 0 12px rgba(232, 193, 74, 0.15), inset 0 0 12px rgba(232, 193, 74, 0.05);
-}
-
-.hero-chip:hover::before {
-  opacity: 1;
-  animation: chipSweep 1.5s ease-in-out infinite;
-}
-
-.hero-chip:active {
-  transform: scale(0.96);
-}
-
-.hero-chip:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* Primary chip (resume) */
-.hero-chip--primary {
-  background: linear-gradient(135deg, rgba(232, 193, 74, 0.15), rgba(184, 134, 11, 0.1));
-  border-color: var(--gold-d);
-  color: var(--gold-l);
-  font-weight: 600;
-}
-
-.hero-chip--primary:hover {
-  background: linear-gradient(135deg, rgba(232, 193, 74, 0.25), rgba(184, 134, 11, 0.15));
-  border-color: var(--gold);
-  box-shadow: 0 0 18px rgba(232, 193, 74, 0.25), inset 0 0 15px rgba(232, 193, 74, 0.08);
-}
-
-@keyframes chipSweep {
-
-  0%,
-  100% {
-    background-position: 200% 0;
-  }
-
-  50% {
-    background-position: -100% 0;
-  }
-}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
@@ -278,14 +168,7 @@
     padding: 44px 16px 20px;
   }
 
-  .hero-chips {
-    gap: 6px;
-  }
 
-  .hero-chip {
-    padding: 7px 14px;
-    font-size: 0.74rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -298,9 +181,5 @@
     letter-spacing: 0.2em;
   }
 
-  .hero-chip {
-    padding: 6px 12px;
-    font-size: 0.72rem;
-    min-height: 40px;
-  }
+
 }

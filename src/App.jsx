@@ -157,7 +157,7 @@ function App() {
       <h1 className="sr-only">Adesh Siddhartha – Terminal Portfolio</h1>
       <main className="app-main">
         <ErrorBoundary>
-          <Hero bootComplete={bootComplete} onRunCommand={handleRunCommand} />
+          <Hero bootComplete={bootComplete} />
         </ErrorBoundary>
         <ErrorBoundary>
           <Terminal
