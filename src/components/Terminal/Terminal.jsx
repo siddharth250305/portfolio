@@ -154,17 +154,7 @@ export default function Terminal({ onToggleTheme, theme, isPoweredOff, bootCompl
           </div>
         )}
 
-        {/* Hints below input */}
-        {bootComplete && !isPoweredOff && (
-          <div className="terminal-hints">
-            <p className="terminal-shortcuts">
-              <span className="hint-key">↹</span> Tab complete ·{' '}
-              <span className="hint-key">↑↓</span> history ·{' '}
-              <span className="hint-key">⌘K</span> command palette ·{' '}
-              '<span className="hint-key">clear</span>' reset
-            </p>
-          </div>
-        )}
+
       </div>
     </div>
   );
