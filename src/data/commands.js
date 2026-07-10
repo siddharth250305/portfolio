@@ -78,8 +78,6 @@ export function cmdHelp() {
     lines.push(`<span class="help-cmd">${cmd}${aliasStr}</span><span class="help-desc">${info.desc}</span>`);
   }
   lines.push('</div>');
-  lines.push('');
-  lines.push('<span class="faint-text">Hint: there are also some hidden commands… try exploring 😉</span>');
   return lines.join('\n');
 }
 

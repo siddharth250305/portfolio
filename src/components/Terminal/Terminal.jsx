@@ -163,9 +163,6 @@ export default function Terminal({ onToggleTheme, theme, isPoweredOff, bootCompl
               <span className="hint-key">⌘K</span> command palette ·{' '}
               '<span className="hint-key">clear</span>' reset
             </p>
-            <p className="terminal-easter-nudge">
-              psst — try '<span className="hint-cmd">coffee</span>' or '<span className="hint-cmd">sudo</span>' for a surprise
-            </p>
           </div>
         )}
       </div>
