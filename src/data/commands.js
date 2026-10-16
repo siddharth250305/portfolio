@@ -18,6 +18,9 @@ export const COMMANDS = {
   whoami:     { desc: 'Who am I?',                  aliases: [],                visible: true },
   skills:     { desc: 'Technical skill set',        aliases: ['tech', 'stack'], visible: true },
   projects:   { desc: 'Featured projects',          aliases: ['work'],          visible: true },
+  experience: { desc: 'Work experience',            aliases: ['exp', 'jobs'],   visible: true },
+  research:   { desc: 'Research work',              aliases: ['papers'],        visible: true },
+  interests:  { desc: 'What I\'m interested in',    aliases: ['focus'],         visible: true },
   education:  { desc: 'My education history',       aliases: ['edu'],           visible: true },
   contact:    { desc: 'How to reach me',            aliases: ['email'],         visible: true },
   social:     { desc: 'Social media links',         aliases: ['links'],         visible: true },
@@ -82,17 +85,18 @@ export function cmdHelp() {
 }
 
 export function cmdAbout() {
+  const [line1, line2, line3] = DATA.shortBio.split('\n');
   return `<span class="section-header">┌─ About Me ─┐</span>
 
   Hey! I'm <span class="highlight">${esc(DATA.displayName)}</span>.
 
-  🎓 ${esc(DATA.shortBio.split('\n')[0])}
-  💡 ${esc(DATA.shortBio.split('\n')[1])}
-  🌍 Based in <span class="value">${esc(DATA.location)}</span>
+  🎓 ${esc(line1)}
+  🔍 ${esc(line2)}
+  🌍 Based in <span class="value">${esc(DATA.location)}</span> · <span class="success">${esc(DATA.availability)}</span>
 
-  ${esc(DATA.shortBio.split('\n')[2])}
+  ${esc(line3)}
 
-  Type <span class="highlight">skills</span> to see my tech stack or <span class="highlight">projects</span> to see my work.`;
+  Type <span class="highlight">projects</span>, <span class="highlight">experience</span> or <span class="highlight">interests</span> to learn more.`;
 }
 
 export function cmdEducation() {
@@ -115,14 +119,55 @@ export function cmdSkills() {
   return out;
 }
 
+function renderHighlights(items) {
+  return items.map(h => `     <span class="muted">•</span> ${esc(h)}\n`).join('');
+}
+
+function renderTags(tags) {
+  return tags.map(t => `<span class="tag">${esc(t)}</span>`).join(' ');
+}
+
 export function cmdProjects() {
   let out = '<span class="section-header">┌─ Featured Projects ─┐</span>\n';
   DATA.projects.forEach((proj, i) => {
-    const tags = proj.tags.map(t => `<span class="tag">${esc(t)}</span>`).join(' ');
-    out += `\n  <span class="muted">${i + 1}.</span> <span class="highlight">${esc(proj.name)}</span>\n`;
+    const status = proj.status ? ` <span class="muted">[${esc(proj.status)}]</span>` : '';
+    out += `\n  <span class="muted">${i + 1}.</span> <span class="highlight">${esc(proj.name)}</span>${status}\n`;
     out += `     ${esc(proj.description)}\n`;
-    out += `     ${tags}\n`;
+    out += renderHighlights(proj.highlights || []);
+    out += `     ${renderTags(proj.tags)}\n`;
+    if (proj.link) {
+      out += `     <a href="${esc(proj.link)}" target="_blank" rel="noopener" class="link">View on GitHub →</a>\n`;
+    }
   });
+  return out;
+}
+
+export function cmdExperience() {
+  let out = '<span class="section-header">┌─ Experience ─┐</span>\n';
+  for (const job of DATA.experience) {
+    out += `\n  ${job.emoji} <span class="highlight">${esc(job.role)}</span> @ <span class="value">${esc(job.org)}</span>\n`;
+    if (job.program) out += `     <span class="info">${esc(job.program)}</span>\n`;
+    out += `     <span class="muted">${esc(job.location)} · ${esc(job.period)}</span>\n`;
+    out += renderHighlights(job.highlights);
+    out += `     ${renderTags(job.tags)}\n`;
+  }
+  return out;
+}
+
+export function cmdResearch() {
+  let out = '<span class="section-header">┌─ Research ─┐</span>\n';
+  for (const item of DATA.research) {
+    out += `\n  🔬 <span class="highlight">${esc(item.title)}</span>\n`;
+    out += `     <span class="muted">${esc(item.org)} · ${esc(item.period)}</span>\n`;
+    out += renderHighlights(item.highlights);
+  }
+  return out;
+}
+
+export function cmdInterests() {
+  let out = '<span class="section-header">┌─ Interests ─┐</span>\n\n';
+  out += DATA.interests.map(i => `  <span class="highlight">▸</span> ${esc(i)}`).join('\n');
+  out += `\n\n  <span class="success">${esc(DATA.availability)}</span> — type <span class="highlight">contact</span> to get in touch.`;
   return out;
 }
 
@@ -130,7 +175,7 @@ export function cmdContact() {
   let out = `<span class="section-header">┌─ Contact ─┐</span>
 
   📧 <span class="label">Email</span>    <a href="mailto:${esc(DATA.email)}" class="link">${esc(DATA.email)}</a>
-  📱 <span class="label">Phone</span>    <a href="tel:${esc(DATA.phone)}" class="link">${esc(DATA.phone)}</a>
+  📱 <span class="label">Phone</span>    <a href="tel:${esc(DATA.phone.replace(/\s/g, ''))}" class="link">${esc(DATA.phone)}</a>
   📍 <span class="label">Location</span> <span class="value">${esc(DATA.location)}</span>`;
 
   if (DATA.linkedin) {
@@ -215,7 +260,8 @@ export function cmdPwd() {
 
 export function cmdLs() {
   return `  <span class="highlight">about.txt</span>      <span class="highlight">education.txt</span>   <span class="value">skills.dat</span>
-  <span class="info">projects/</span>      <span class="highlight">contact.txt</span>     <span class="success">my_resume.pdf</span>
+  <span class="info">projects/</span>      <span class="info">experience/</span>     <span class="info">research/</span>
+  <span class="highlight">interests.txt</span>  <span class="highlight">contact.txt</span>     <span class="success">my_resume.pdf</span>
   <span class="info">social -> links/</span>`;
 }
 
@@ -249,7 +295,7 @@ export function cmdSudo(args) {
   if (args && args.length > 0 && args.join(' ').toLowerCase().includes('hire')) {
     return `<span class="success">sudo hire accepted! 🎉</span>
 
-  I'm <span class="highlight">open to work</span> and would love to connect!
+  I'm <span class="highlight">${esc(DATA.availability.toLowerCase())}</span> and would love to connect!
   Type <span class="highlight">contact</span> to reach out. Let's build something great together.`;
   }
   return `<span class="error">nice try 😏 — ${esc(DATA.displayName)} is not in the sudoers file. This incident will be reported.</span>`;
@@ -257,9 +303,9 @@ export function cmdSudo(args) {
 
 export function cmdHire() {
   const contactOutput = cmdContact();
-  return `<span class="success">✨ Yes! I'm open to work! ✨</span>
+  return `<span class="success">✨ Yes! I'm ${esc(DATA.availability.toLowerCase())}! ✨</span>
 
-  Let's build something amazing together.
+  Interested in LLM agents, retrieval and traceable AI systems — let's talk.
 
 ${contactOutput}`;
 }
@@ -284,6 +330,9 @@ export const HANDLERS = {
   education: cmdEducation,
   skills: cmdSkills,
   projects: cmdProjects,
+  experience: cmdExperience,
+  research: cmdResearch,
+  interests: cmdInterests,
   contact: cmdContact,
   social: cmdSocial,
   resume: cmdResume,

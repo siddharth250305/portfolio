@@ -8,9 +8,9 @@ import useTypingEffect from '../../hooks/useTypingEffect';
 import './Hero.css';
 
 const INTRO_HTML =
-  'Welcome to my portfolio. I\'m <span class="highlight">Adesh Siddhartha</span> — a software engineer building intelligent systems and exploring the frontiers of AI.';
+  'Welcome to my portfolio. I\'m <span class="highlight">Adesh Siddhartha</span> — I build AI-agent systems whose output engineers can trace, audit and review.';
 
-const CHIP_COMMANDS = ['about', 'projects', 'skills', 'contact', 'resume'];
+const CHIP_COMMANDS = ['about', 'projects', 'experience', 'skills', 'contact', 'resume'];
 
 export default function Hero({ bootComplete, onRunCommand }) {
   const { displayedText, cursorVisible, isComplete } = useTypingEffect(
@@ -61,7 +61,7 @@ export default function Hero({ bootComplete, onRunCommand }) {
         </h2>
 
         <p className={`hero-subtitle${showSubtitle ? ' visible' : ''}`}>
-          MSc Software Engineering Student · AI Enthusiast · Sweden
+          MSc Software Engineering · AI Agents & Traceable Systems · Sweden
         </p>
 
         <div
