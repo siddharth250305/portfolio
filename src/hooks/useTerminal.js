@@ -121,10 +121,11 @@ export default function useTerminal({ onToggleTheme, theme, onToggleScanlines })
     }
 
     if (result === 'OPEN_RESUME') {
+      const resumeUrl = '/my_resume.pdf?v=' + Date.now();
       addOutput('cmd-output',
-        `<span class="section-header">┌─ Resume ─┐</span>\n\n  📄 <a href="/my_resume.pdf" target="_blank" rel="noopener" class="link">View / Download Resume (PDF)</a>\n\n  <span class="muted">Opening resume...</span>`
+        `<span class="section-header">┌─ Resume ─┐</span>\n\n  📄 <a href="${resumeUrl}" target="_blank" rel="noopener" class="link">View / Download Resume (PDF)</a>\n\n  <span class="muted">Opening resume...</span>`
       );
-      window.open('/my_resume.pdf', '_blank');
+      window.open(resumeUrl, '_blank');
       return;
     }
 

@@ -21,7 +21,7 @@ export const COMMANDS = {
   education:  { desc: 'My education history',       aliases: ['edu'],           visible: true },
   contact:    { desc: 'How to reach me',            aliases: ['email'],         visible: true },
   social:     { desc: 'Social media links',         aliases: ['links'],         visible: true },
-  resume:     { desc: 'View/download resume',       aliases: ['cv'],            visible: true },
+  resume:     { desc: 'View/download resume',       aliases: ['cv', 'my_resume.pdf', 'resume.pdf', 'my_resume'], visible: true },
   neofetch:   { desc: 'System info display',        aliases: ['sysinfo'],       visible: true },
   echo:       { desc: 'Echo a message',             aliases: [],                visible: true },
   date:       { desc: 'Show current date & time',   aliases: ['time'],          visible: true },
@@ -215,7 +215,7 @@ export function cmdPwd() {
 
 export function cmdLs() {
   return `  <span class="highlight">about.txt</span>      <span class="highlight">education.txt</span>   <span class="value">skills.dat</span>
-  <span class="info">projects/</span>      <span class="highlight">contact.txt</span>     <span class="success">resume.pdf</span>
+  <span class="info">projects/</span>      <span class="highlight">contact.txt</span>     <span class="success">my_resume.pdf</span>
   <span class="info">social -> links/</span>`;
 }
 
