@@ -8,7 +8,7 @@ import useTypingEffect from '../../hooks/useTypingEffect';
 import './Hero.css';
 
 const INTRO_HTML =
-  'Welcome to my portfolio. I\'m <span class="highlight">Adesh Siddhartha</span> — I build AI-agent systems whose output engineers can trace, audit and review.';
+  'Welcome to my portfolio. I\'m <span class="highlight">Adesh Siddhartha</span> — a software engineer building intelligent systems and exploring the frontiers of AI.';
 
 const CHIP_COMMANDS = ['about', 'projects', 'experience', 'skills', 'contact', 'resume'];
 
