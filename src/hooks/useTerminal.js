@@ -122,9 +122,9 @@ export default function useTerminal({ onToggleTheme, theme, onToggleScanlines })
 
     if (result === 'OPEN_RESUME') {
       addOutput('cmd-output',
-        `<span class="section-header">┌─ Resume ─┐</span>\n\n  📄 <a href="/AI_resume.pdf" target="_blank" rel="noopener" class="link">View / Download Resume (PDF)</a>\n\n  <span class="muted">Opening resume...</span>`
+        `<span class="section-header">┌─ Resume ─┐</span>\n\n  📄 <a href="/my_resume.pdf" target="_blank" rel="noopener" class="link">View / Download Resume (PDF)</a>\n\n  <span class="muted">Opening resume...</span>`
       );
-      window.open('/AI_resume.pdf', '_blank');
+      window.open('/my_resume.pdf', '_blank');
       return;
     }
 

@@ -17,7 +17,7 @@ const DATA = {
   linkedin: 'https://www.linkedin.com/in/rathod-adesh-siddhartha-5751703bb',
   github: 'https://github.com/siddharth250305',
   x: '', // Add your X/Twitter URL here
-  resumeUrl: '/AI_resume.pdf',
+  resumeUrl: '/my_resume.pdf',
 
   // Short bio for the about command
   shortBio: `Currently pursuing MSc in Software Engineering at BTH, Sweden.
